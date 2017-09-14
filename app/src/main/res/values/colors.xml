@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/red_primary</color>
+    <color name="colorPrimaryDark">@color/red_secondary</color>
+    <color name="colorAccent">@color/red_accent</color>
+
+    <color name="red_primary">#B41601</color>
+    <color name="red_secondary">#dcb41601</color>
+    <color name="red_accent">#F30617</color>
+    <color name="red_switch">#b3f4000b</color>
+    <color name="gray_primary">#828282</color>
+    <color name="gray_secondary">#dc828282</color>
+    <color name="white_tint">#bbffffff</color>
+
+    <!-- List item highlights -->
+    <color name="list_item">@android:color/white</color>
+    <color name="list_item_red">@color/red_secondary</color>
+    <color name="list_item_press">@color/colorPrimary</color>
+    <color name="list_item_ripple">@color/colorPrimaryDark</color>
+    <color name="transparent">#00000000</color>
+</resources>

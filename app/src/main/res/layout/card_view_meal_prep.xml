@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    xmlns:tools="http://schemas.android.com/tools"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="125dp"
+                                    android:elevation="4dp"
+                                    android:orientation="vertical"
+                                    app:cardUseCompatPadding="false">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/card_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            tools:text="Meal Prep"/>
+
+        <TextView
+            android:id="@+id/card_ingredient_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Ingredient One"/>
+
+        <TextView
+            android:id="@+id/card_ingredient_two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Ingredient Two"/>
+
+        <TextView
+            android:id="@+id/card_ingredient_three"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Ingredient Three"/>
+
+        <TextView
+            android:id="@+id/card_ingredient_four"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Ingredient Four"/>
+
+        <ImageView
+            android:id="@+id/card_sync_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:tint="@color/colorAccent"
+            app:srcCompat="@drawable/ic_sync_problem_black_36dp"/>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
