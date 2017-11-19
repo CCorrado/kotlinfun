@@ -4,13 +4,12 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    compileSdkVersion rootProject.ext.targetSdk
     defaultConfig {
         applicationId "com.ccorrads.kotlinfun"
         vectorDrawables.useSupportLibrary = true
-        minSdkVersion "${min_sdk}"
-        targetSdkVersion 26
+        minSdkVersion rootProject.ext.minSdk
+        targetSdkVersion rootProject.ext.targetSdk
         versionCode 1
         versionName "1.0"
         resValue "string", "base_url", "https://lol"
@@ -109,5 +108,7 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
 
     implementation 'org.greenrobot:eventbus:3.0.0'
+
+    implementation project(path: ':guppy')
 }
 apply plugin: 'com.google.gms.google-services'

@@ -9,12 +9,12 @@ import com.ccorrads.kotlinfun.network.BackendService
 import com.ccorrads.kotlinfun.network.CustomInterceptor
 import com.ccorrads.kotlinfun.serialization.DateTimeTypeAdapter
 import com.ccorrads.kotlinfun.serialization.LocalDateTypeAdapter
-import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.franmontiel.persistentcookiejar.PersistentCookieJar
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.jnj.guppy.GuppyInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.Interceptor
@@ -37,9 +37,8 @@ open class NetworkModule {
     companion object {
 
         private val formattedLocale: String
-            get() {
-                return Locale.getDefault().language.toLowerCase() + "_" + Locale.getDefault().country.toUpperCase()
-            }
+            get() =
+                Locale.getDefault().language.toLowerCase() + "_" + Locale.getDefault().country.toUpperCase()
 
         // Customize the request
         val defaultInterceptor: Interceptor
@@ -59,15 +58,13 @@ open class NetworkModule {
 
     @Singleton
     @Provides
-    fun providesDbHelper(): DatabaseHelper {
-        return DatabaseHelper(MainApp.application, MainApp.application.getString(R.string.databaseName))
-    }
+    fun providesDbHelper(): DatabaseHelper =
+            DatabaseHelper(MainApp.application, MainApp.application.getString(R.string.databaseName))
 
     @Singleton
     @Provides
-    fun providesMealDbHelper(databaseHelper: DatabaseHelper): MealDbHelper {
-        return MealDbHelper(databaseHelper)
-    }
+    fun providesMealDbHelper(databaseHelper: DatabaseHelper): MealDbHelper =
+            MealDbHelper(databaseHelper)
 
     @Singleton
     @Provides
@@ -84,9 +81,9 @@ open class NetworkModule {
 
         val cookieJar = PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(MainApp.application))
         val okHttpBuilder = OkHttpClient.Builder()
-        okHttpBuilder.addNetworkInterceptor(StethoInterceptor())
         okHttpBuilder.addInterceptor(defaultInterceptor)
         okHttpBuilder.addInterceptor(authInterceptor)
+        okHttpBuilder.addInterceptor(GuppyInterceptor(MainApp.application, GuppyInterceptor.Level.BODY))
         //Handle cookies
         okHttpBuilder.cookieJar(cookieJar)
 

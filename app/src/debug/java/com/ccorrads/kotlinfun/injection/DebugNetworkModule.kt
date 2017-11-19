@@ -5,8 +5,8 @@ import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.franmontiel.persistentcookiejar.PersistentCookieJar
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
+import com.jnj.guppy.GuppyInterceptor
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 
 class DebugNetworkModule : NetworkModule() {
 
@@ -17,11 +17,7 @@ class DebugNetworkModule : NetworkModule() {
         okHttpBuilder.addNetworkInterceptor(StethoInterceptor())
         okHttpBuilder.addInterceptor(defaultInterceptor)
         okHttpBuilder.addInterceptor(authInterceptor)
-
-        // init okhttp 3 logger
-        val logging = HttpLoggingInterceptor()
-        logging.level = HttpLoggingInterceptor.Level.BODY
-        okHttpBuilder.addInterceptor(logging)
+        okHttpBuilder.addInterceptor(GuppyInterceptor(MainApp.application, GuppyInterceptor.Level.BODY))
 
         //Handle cookies
         okHttpBuilder.cookieJar(cookieJar)

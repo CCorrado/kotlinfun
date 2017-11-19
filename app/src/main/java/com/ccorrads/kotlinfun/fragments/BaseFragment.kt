@@ -21,8 +21,8 @@ abstract class BaseFragment : Fragment() {
      * covers off common fragment initialization tasks such as creating the content view & binding the sub-views
      * sub classes should implement [.onViewCreated]
      */
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater!!.inflate(getLayoutResourceId(), container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(getLayoutResourceId(), container, false)
         setHasOptionsMenu(true)
         retainInstance = true
         return view

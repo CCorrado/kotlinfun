@@ -10,11 +10,9 @@ import org.joda.time.DateTime
 
 class AddMealPrepFragment : BaseFragment() {
 
-    override fun getLayoutResourceId(): Int {
-        return R.layout.fragment_add_meal
-    }
+    override fun getLayoutResourceId(): Int = R.layout.fragment_add_meal
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         save_button.setOnClickListener { onClickSave() }
     }
@@ -33,6 +31,6 @@ class AddMealPrepFragment : BaseFragment() {
         //TODO enable this for synchronous calls.
         /*val syncServiceIntent = Intent(context, SyncService::class.java)
         context.startService(syncServiceIntent)*/
-        activity.onBackPressed()
+        activity?.onBackPressed()
     }
 }

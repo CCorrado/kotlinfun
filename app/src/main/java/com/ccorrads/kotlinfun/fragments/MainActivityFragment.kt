@@ -26,11 +26,9 @@ class MainActivityFragment : BaseFragment() {
 
     private lateinit var adapter: MealPrepRecyclerAdapter
 
-    override fun getLayoutResourceId(): Int {
-        return R.layout.fragment_main
-    }
+    override fun getLayoutResourceId(): Int = R.layout.fragment_main
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpRecyclerView(fragment_recycler)
         fab.setOnClickListener {

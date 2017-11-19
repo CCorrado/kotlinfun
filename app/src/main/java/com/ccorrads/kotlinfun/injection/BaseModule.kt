@@ -1,4 +1,4 @@
-package com.ccorrads.kotlinfun.injection;
+package com.ccorrads.kotlinfun.injection
 
 import com.ccorrads.kotlinfun.MainApp
 import dagger.Module
@@ -10,8 +10,6 @@ class BaseModule {
 
     @Provides
     @Singleton
-    fun provideContext(application: MainApp): MainApp {
-        return application
-    }
+    fun provideContext(application: MainApp): MainApp = application
 
 }
