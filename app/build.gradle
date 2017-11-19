@@ -12,7 +12,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdk
         versionCode 1
         versionName "1.0"
-        resValue "string", "base_url", "https://lol"
+        resValue "string", "base_url", "https://mealprepofflineexample.firebaseio.com/"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "int", "databaseVersion", "1"
     }
