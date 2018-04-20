@@ -26,21 +26,26 @@ class SharedPrefsData {
     }
 
     fun getGuppyData(context: Context): List<GuppyData> {
-        val json = getSharedPrefs(context).getString(GUPPY_DATA_STRING_KEY, "No data found")
+        val json = getSharedPrefs(context).getString(GUPPY_DATA_STRING_KEY, "")
+        var data: List<GuppyData> = mutableListOf()
+        if (json == "") {
+            return data
+        }
         try {
-            val type = object : TypeToken<List<GuppyData>>() {
-
-            }.type
-            val data = getGson().fromJson<List<GuppyData>>(json, type)
-            if (data != null) {
+            val type = object : TypeToken<List<GuppyData>>() {}.type
+            val result = getGson().fromJson<List<GuppyData>>(json, type)
+            if (result != null) {
+                data += result
                 return data
             }
         } catch (error: Exception) {
-            Log.e(TAG, "Error parsing json: " + error.message, error)
-            return ArrayList()
+            Log.d(TAG, "Error parsing json: " + error.message, error)
+            val obj = getGson().fromJson(json, GuppyData::class.java)
+            if (obj != null) {
+                data += obj
+            }
         }
-
-        return ArrayList()
+        return data
     }
 
     private fun getSharedPrefs(context: Context): SharedPreferences {

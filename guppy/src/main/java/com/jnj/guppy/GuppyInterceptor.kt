@@ -174,7 +174,7 @@ class GuppyInterceptor(private val context: Context, private val level: Level) :
                     logger.logRequestContentType("Content-Type: " + requestBody.contentType())
                 }
                 if (requestBody?.contentLength() != -1L) {
-                    logger.logRequestContentLength("Content-Length: " + requestBody.contentLength())
+                    logger.logRequestContentLength("Content-Length: " + requestBody?.contentLength())
                 }
             }
 
@@ -200,16 +200,16 @@ class GuppyInterceptor(private val context: Context, private val level: Level) :
                 requestBody?.writeTo(buffer)
 
                 var charset: Charset = UTF_8
-                val contentType = requestBody.contentType()
-                if (contentType != null) {
-                    charset = contentType.charset(UTF_8)
+                val contentType = requestBody?.contentType()
+                if (contentType?.charset(UTF_8) != null) {
+                    charset = contentType.charset(UTF_8)!!
                 }
 
                 if (isPlaintext(buffer)) {
                     logger.logRequestBody(buffer.readString(charset))
                 } else {
                     logger.logRequestBody("--> END " + request.method() + " (binary "
-                            + requestBody.contentLength() + "-byte body omitted)")
+                            + requestBody?.contentLength() + "-byte body omitted)")
                 }
             }
         }
@@ -251,26 +251,26 @@ class GuppyInterceptor(private val context: Context, private val level: Level) :
             } else if (bodyEncoded(response.headers())) {
                 logger.logResponseBody("<-- END HTTP (encoded body omitted)")
             } else {
-                val source = responseBody.source()
-                source.request(java.lang.Long.MAX_VALUE) // Buffer the entire body.
-                val buffer = source.buffer()
+                val source = responseBody?.source()
+                source?.request(java.lang.Long.MAX_VALUE) // Buffer the entire body.
+                val buffer = source?.buffer()
 
                 var charset: Charset = UTF_8
-                val contentType = responseBody.contentType()
-                if (contentType != null) {
-                    charset = contentType.charset(UTF_8)
+                val contentType = responseBody?.contentType()
+                if (contentType?.charset(UTF_8) != null) {
+                    charset = contentType.charset(UTF_8)!!
                 }
 
-                if (!isPlaintext(buffer)) {
+                if (buffer != null && !isPlaintext(buffer)) {
                     logger.logResponseBody("<-- END HTTP (binary " + buffer.size() + "-byte body omitted)")
                     return response
                 }
 
-                if (contentLength != 0L) {
+                if (contentLength != 0L && buffer != null) {
                     logger.logResponseBody(buffer.clone().readString(charset))
                 }
 
-                logger.logResponseContentLength("<-- END HTTP (" + buffer.size() + "-byte body)")
+                logger.logResponseContentLength("<-- END HTTP (" + buffer?.size() + "-byte body)")
             }
         }
         val dataToSave = GuppyData(Logger.interceptedData.requestType, Logger.interceptedData.host,

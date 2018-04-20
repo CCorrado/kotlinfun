@@ -9,7 +9,7 @@ import com.jnj.guppy.ShakeDetector.OnShakeListener
 import com.jnj.guppy.dialogs.GuppyDialogFragment
 
 
-open class GuppyActivity : AppCompatActivity() {
+abstract class GuppyActivity : AppCompatActivity() {
 
     // The following are used for the shake detection
     private lateinit var mSensorManager: SensorManager

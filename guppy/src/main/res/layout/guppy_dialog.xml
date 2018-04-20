@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        tools:ignore="UseCompoundDrawables">
 
         <TextView
             android:id="@+id/guppy_version"
@@ -26,7 +27,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:padding="10dp"
-            app:srcCompat="@drawable/ic_delete_sweep"/>
+            app:srcCompat="@drawable/ic_delete_sweep"
+            tools:ignore="ContentDescription"/>
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
